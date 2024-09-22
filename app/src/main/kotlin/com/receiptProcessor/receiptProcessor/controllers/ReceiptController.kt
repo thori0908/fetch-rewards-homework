@@ -2,6 +2,7 @@ package com.receiptProcessor.receiptProcessor.controllers
 
 import com.receiptProcessor.receiptProcessor.models.ReceiptId
 import com.receiptProcessor.receiptProcessor.services.GetReceiptPointsService
+import com.receiptProcessor.receiptProcessor.services.ProcessReceiptParams
 import com.receiptProcessor.receiptProcessor.services.ProcessReceiptService
 import org.springframework.web.bind.annotation.*
 
@@ -20,18 +21,6 @@ class ReceiptController {
     }
 }
 
-data class ProcessReceiptParams(
-    val retailer: String,
-    val purchaseDate: String,
-    val purchaseTime: String,
-    val items: List<ProcessReceiptItemParams>,
-    val total: String,
-)
-
-data class ProcessReceiptItemParams(
-    val shortDescription: String,
-    val price: String,
-)
 
 data class ProcessReceiptParamsResponse(val id: String)
 data class GetReceiptPointsResponse(val points: Double)
