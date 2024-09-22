@@ -1,5 +1,23 @@
 package com.receiptProcessor.receiptProcessor.models
 
-import org.junit.jupiter.api.Assertions.*
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 
-internal class ProcessReceiptItemTest
+internal class ProcessReceiptItemTest : DescribeSpec({
+    describe("trimmedLengthOfDescription") {
+        it("the length of '   Klarbrunn 12-PK 12 FL OZ  ' should be 24") {
+            val processReceiptItem = buildProcessReceiptItem("   Klarbrunn 12-PK 12 FL OZ  ")
+            processReceiptItem.trimmedLengthOfDescription() shouldBe 24
+        }
+
+        it("the length of 'Klarbrunn' should be 9") {
+            val processReceiptItem = buildProcessReceiptItem("Klarbrunn")
+            processReceiptItem.trimmedLengthOfDescription() shouldBe 9
+        }
+    }
+})
+
+private fun buildProcessReceiptItem(
+    shortDescription: String,
+    price: Double = 10.0,
+): ProcessReceiptItem = ProcessReceiptItem(shortDescription, price)
