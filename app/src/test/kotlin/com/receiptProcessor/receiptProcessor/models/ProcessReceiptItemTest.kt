@@ -15,6 +15,13 @@ internal class ProcessReceiptItemTest : DescribeSpec({
             processReceiptItem.trimmedLengthOfDescription() shouldBe 9
         }
     }
+
+    describe("calculatePoints") {
+        it("calculate") {
+            ProcessReceiptItem("Emils Cheese Pizza", 12.25).calculatePoints() shouldBe 3.0
+            ProcessReceiptItem("   Klarbrunn 12-PK 12 FL OZ  ", 12.00).calculatePoints() shouldBe 3.0
+        }
+    }
 })
 
 private fun buildProcessReceiptItem(
