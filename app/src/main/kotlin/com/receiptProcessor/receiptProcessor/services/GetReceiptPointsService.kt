@@ -6,7 +6,7 @@ import com.receiptProcessor.receiptProcessor.repositories.ReceiptRepository
 
 object GetReceiptPointsService {
     fun execute(id: ReceiptId): Double {
-        val receipt = ReceiptRepository.findBy(id) ?: throw ResourceNotFoundException("receipt")
+        val receipt = ReceiptRepository.findBy(id) ?: throw ResourceNotFoundException("No receipt found for that id")
         return receipt.calculatePoints()
     }
 }
