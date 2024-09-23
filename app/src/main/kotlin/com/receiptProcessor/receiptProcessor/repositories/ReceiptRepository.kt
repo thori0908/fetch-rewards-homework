@@ -5,7 +5,9 @@ import com.receiptProcessor.receiptProcessor.models.Receipt
 import com.receiptProcessor.receiptProcessor.models.ReceiptId
 
 object ReceiptRepository {
-    fun findBy(id: ReceiptId): Receipt? = TODO()
+    private val records = mutableMapOf<ReceiptId, Receipt>()
+
+    fun findBy(id: ReceiptId): Receipt? = this.records[id]
 
     fun create(
         retailer: String,
@@ -14,6 +16,17 @@ object ReceiptRepository {
         items: List<ProcessReceiptItem>,
         total: Double,
     ): ReceiptId {
-        TODO("Not yet implemented")
+        val receipt = Receipt(
+            id = ReceiptId.generate(),
+            retailer = retailer,
+            purchaseDate = purchaseDate,
+            purchaseTime = purchaseTime,
+            items = items,
+            total = total,
+        )
+
+        this.records[receipt.id] = receipt
+
+        return receipt.id
     }
 }
