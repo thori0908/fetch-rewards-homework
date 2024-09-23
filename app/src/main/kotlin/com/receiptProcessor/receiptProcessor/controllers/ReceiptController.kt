@@ -17,10 +17,10 @@ class ReceiptController {
     @GetMapping("/receipts/{id}/points")
     fun getReceiptPoints(@PathVariable id: String): GetReceiptPointsResponse {
         val points = GetReceiptPointsService.execute(ReceiptId(id))
-        return GetReceiptPointsResponse(points)
+        return GetReceiptPointsResponse(points.toInt())
     }
 }
 
 
 data class ProcessReceiptParamsResponse(val id: String)
-data class GetReceiptPointsResponse(val points: Double)
+data class GetReceiptPointsResponse(val points: Int)
